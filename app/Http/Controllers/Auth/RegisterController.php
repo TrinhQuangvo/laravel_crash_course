@@ -20,7 +20,6 @@ class RegisterController extends Controller
             'username' => 'required|max:255',
             'email' => 'required|max:255|email',
             'password' => 'required|max:255',
-            'con'
         ]);
         // validation
         // store user
@@ -35,6 +34,7 @@ class RegisterController extends Controller
                 'password_cofirmation' => Hash::make($req->password_confirmation)
             ]
         );
+        auth()->attempt($req->only('email','password'));
         return redirect()->route('dashboard');
     }
 }
