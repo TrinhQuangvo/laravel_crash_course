@@ -20,7 +20,7 @@ use App\Http\Controllers\LogoutController;
 Route::get('/posts', function () {
     return view('posts.index');
 });
-Route::get('/', [DashboardController::class , 'index'])->name('home');
+Route::get('/', [DashboardController::class , 'index'])->name('home')->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
