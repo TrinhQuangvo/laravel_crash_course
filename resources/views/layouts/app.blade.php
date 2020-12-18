@@ -13,7 +13,7 @@
     <nav class="p-6 bg-white flex justify-between">
         <ul class="flex items-center">
             <li><a href="{{route('home')}}" class="p-3">Home</a></li>  
-            <li><a href="" class="p-3">Posts</a></li>
+            <li><a href="{{route('posts')}}" class="p-3">Posts</a></li>
         </ul>
         <ul class="flex items-center">
             @if(auth()->user()) 
