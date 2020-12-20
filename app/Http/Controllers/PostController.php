@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Repositories\PostRepository;
 
 class PostController extends Controller
 {
-    public function __construct()
+
+    private $postRepository;
+    public function __construct(PostRepository $postRepository)
     {
+        $this->postRepository = $postRepository; 
         $this->middleware('auth');
     }
     public function index()
     {
-        $posts = Post::paginate(20);
+        $posts = $this->postRepository->all(); 
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -34,5 +38,12 @@ class PostController extends Controller
         ]);
 
         return redirect()->route('posts')->with('success', 'Content Was Added Successfully');
-    }   
+    }
+
+    public function destroy($id)
+    {
+        $this->postRepository->destroy($id);
+        
+        return redirect()->route('posts')->with('deleted','this post have been deleted');
+    }
 }

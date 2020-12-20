@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
 
@@ -32,3 +33,6 @@ Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'store']);
 Route::get('/post_creation', [PostController::class, 'create'])->name('create_post');
+Route::post('/posts/{id}/delete', [PostController::class,'destroy'])->name('post.delete');
+
+Route::post('/posts/{post}/likes',[LikeController::class,'store'])->name('posts.likes');
